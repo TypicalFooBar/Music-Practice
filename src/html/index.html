@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="app">
+        <h1 class="title">Practice Session</h1>
+        <section id="practice-buttons" v-if="!practiceIsRunning">
+            <button disabled type="button" class="btn btn-primary" v-on:click="startScalePractice">Scales</button>
+            <button type="button" class="btn btn-primary" v-on:click="startChordPractice">Chords</button>
+            <button disabled type="button" class="btn btn-primary">Arps</button>
+        </section>
+        <section id="practice-area" v-if="practiceIsRunning">
+            <div id="settings">
+                <label for="seconds-slider" class="form-label">Seconds Between Cards: {{ secondsSliderValue }}</label>
+                <input type="range" class="form-range" min="1" max="30" id="seconds-slider" v-model="secondsSliderValue">
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <span id="card-data">{{ cardData }}</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" v-on:click="stopPractice">Stop</button>
+        </section>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
