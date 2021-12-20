@@ -8,9 +8,8 @@
     <div id="app">
         <h1 class="title">Practice Session</h1>
         <section id="practice-buttons" v-if="!practiceIsRunning">
-            <button disabled type="button" class="btn btn-primary" v-on:click="startScalePractice">Scales</button>
+            <button type="button" class="btn btn-primary" v-on:click="startScalePractice">Scales</button>
             <button type="button" class="btn btn-primary" v-on:click="startChordPractice">Chords</button>
-            <button disabled type="button" class="btn btn-primary">Arps</button>
         </section>
         <section id="practice-area" v-if="practiceIsRunning">
             <div id="settings">
