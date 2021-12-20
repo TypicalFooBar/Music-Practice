@@ -21166,7 +21166,38 @@ let app = new (vue__WEBPACK_IMPORTED_MODULE_3___default())({
     },
     methods: {
         startScalePractice: function (event) {
-            console.log(_static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__)
+            this.practiceIsRunning = true
+
+            // Set the first random card
+            {
+                // Get a random key
+                const randomKey = _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.keys[Math.floor(Math.random() * _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.keys.length)]
+
+                // Get a random scale
+                const randomScale = _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.scales[Math.floor(Math.random() * _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.scales.length)]
+
+                this.cardData = `${randomKey} ${randomScale}`
+            }
+
+            // Set an interval to run every second
+            this.cardInterval = setInterval(() => {
+                // If the time went over, show a new card
+                if (this.secondsSinceLastCard >= this.secondsSliderValue) {
+                    // Get a random key
+                    const randomKey = _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.keys[Math.floor(Math.random() * _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.keys.length)]
+
+                    // Get a random scale
+                    const randomScale = _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.scales[Math.floor(Math.random() * _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.scales.length)]
+
+                    this.cardData = `${randomKey} ${randomScale}`
+
+                    // Reset the card timer
+                    this.secondsSinceLastCard = 1;
+                }
+                else {
+                    this.secondsSinceLastCard++
+                }
+            }, 1000)
         },
         startChordPractice: function (event) {
             this.practiceIsRunning = true
@@ -21184,9 +21215,8 @@ let app = new (vue__WEBPACK_IMPORTED_MODULE_3___default())({
 
             // Set an interval to run every second
             this.cardInterval = setInterval(() => {
-                // If the time went over
+                // If the time went over, show a new card
                 if (this.secondsSinceLastCard >= this.secondsSliderValue) {
-                    // Show a new card
                     // Get a random key
                     const randomKey = _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.keys[Math.floor(Math.random() * _static_practice_data_json__WEBPACK_IMPORTED_MODULE_2__.keys.length)]
 
@@ -21202,9 +21232,6 @@ let app = new (vue__WEBPACK_IMPORTED_MODULE_3___default())({
                     this.secondsSinceLastCard++
                 }
             }, 1000)
-        },
-        startArpPractice: function (event) {
-
         },
         stopPractice: function (event) {
             clearInterval(this.cardInterval)
